@@ -30,6 +30,20 @@ app.use('/api/auth', authRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/gemini', geminiRoutes); // <-- NEW
 
+
+// ✅ Add this here to prevent favicon 404s for vercel
+app.get('/favicon.ico', (req, res) => res.sendStatus(204));
+
+
+
+// ✅ Optional: root route. default route (/) to your Express app . This will prevent 404 errors when Vercel or a browser tries to access /
+
+app.get('/', (req, res) => {
+  res.send('Chatbot backend is running 🚀');
+});
+
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
