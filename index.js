@@ -14,7 +14,23 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: "https://chatbot-frontend-plum.vercel.app" }));
+const allowedOrigins = [
+  "https://chatbot-frontend-plum.vercel.app",
+  "https://chatbot-frontend-qx7v1vpfx-nirajs-projects-69bf51b2.vercel.app",
+  "https://chatbot-frontend.vercel.app", // (optional if you plan to move to a clean domain)
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS: " + origin));
+    }
+  },
+  credentials: true
+}));
+
 app.use(express.json());
 
 // MongoDB connection
