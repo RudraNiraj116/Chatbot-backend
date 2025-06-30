@@ -13,13 +13,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// ✅ Include localhost:5173 for development
 const allowedOrigins = [
+  "http://localhost:5173",
   "https://chatbot-frontend-plum.vercel.app",
   "https://chatbot-frontend-qx7v1vpfx-nirajs-projects-69bf51b2.vercel.app",
-  "https://chatbot-frontend.vercel.app", // (optional if you plan to move to a clean domain)
+  "https://chatbot-frontend.vercel.app"
 ];
 
+// Middleware
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -46,19 +48,13 @@ app.use('/api/auth', authRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/gemini', geminiRoutes); // <-- NEW
 
-
-// ✅ Add this here to prevent favicon 404s for vercel
+// Prevent favicon 404
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
-
-
-// ✅ Optional: root route. default route (/) to your Express app . This will prevent 404 errors when Vercel or a browser tries to access /
-
+// Default route
 app.get('/', (req, res) => {
   res.send('Chatbot backend is running 🚀');
 });
-
-
 
 // Start server
 app.listen(PORT, () => {
