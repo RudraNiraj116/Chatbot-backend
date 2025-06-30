@@ -17,7 +17,9 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   "https://chatbot-frontend-plum.vercel.app",
   "https://chatbot-frontend-qx7v1vpfx-nirajs-projects-69bf51b2.vercel.app",
-  "https://chatbot-frontend.vercel.app", // (optional if you plan to move to a clean domain)
+  "https://chatbot-frontend-nirajs-projects.vercel.app",
+  "https://chatbot-frontend-nirajs-projects.vercel.app",
+  "https://chatbot-frontend-nirajs-projects.vercel.app",
 ];
 
 app.use(cors({
