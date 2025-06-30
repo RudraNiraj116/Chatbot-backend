@@ -16,10 +16,8 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const allowedOrigins = [
   "https://chatbot-frontend-plum.vercel.app",
-  "https://chatbot-frontend-qx7v1vpfx-nirajs-projects-69bf51b2.vercel.app",
-  "https://chatbot-frontend-nirajs-projects.vercel.app",
-  "https://chatbot-frontend-nirajs-projects.vercel.app",
-  "https://chatbot-frontend-nirajs-projects.vercel.app",
+  "chatbot-frontend-ph4vqswut-nirajs-projects-69bf51b2.vercel.app",
+  "https://chatbot-frontend-plum.vercel.app", // (optional if you plan to move to a clean domain)
 ];
 
 app.use(cors({
@@ -27,7 +25,7 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS: " + origin));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   credentials: true
